@@ -3,6 +3,7 @@ package app.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,6 +13,8 @@ public class AnimalsCage {
     @Qualifier("dog")
     private Animal animal;
 
+    private Timer timer;
+
     public void whatAnimalSay() {
         System.out.println("Say:");
         System.out.println(animal.toString());
@@ -20,8 +23,9 @@ public class AnimalsCage {
         System.out.println("________________________");
     }
 
+    @Bean(name="timer")
+    @Scope("prototype")
     public Timer getTimer() {
-        Timer timer = new Timer();
         return timer;
     }
 }
