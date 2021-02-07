@@ -13,7 +13,7 @@ public class AnimalsCage {
     @Qualifier("dog")
     private Animal animal;
 
-    private Timer timer;
+    Timer timer = new Timer();
 
     public void whatAnimalSay() {
         System.out.println("Say:");
@@ -23,9 +23,12 @@ public class AnimalsCage {
         System.out.println("________________________");
     }
 
-    @Bean(name="timer")
-    @Scope("prototype")
+    @Bean("timer")
+    @Scope("singleton")
     public Timer getTimer() {
+
+        timer.getTime();
+
         return timer;
     }
 }
